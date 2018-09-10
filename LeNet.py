@@ -1,5 +1,5 @@
 #-*-coding:utf-8-*-
-
+import torch as t
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -33,3 +33,18 @@ class Net(nn.Module):
 
 net = Net()
 print(net)
+
+params = list(net.parameters())
+print(len(params))
+for name,parameters in net.named_parameters():
+    print(name,':',parameters.size())
+
+input = t.randn(1, 1, 32, 32)
+out = net(input)
+print(out.size())
+
+
+net.zero_grad() # 所有参数的梯度清零
+out.backward(t.ones(1,10)) # 反向传播
+
+
