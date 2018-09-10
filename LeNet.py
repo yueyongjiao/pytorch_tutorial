@@ -52,9 +52,10 @@ target = 1.0 * t.arange(0, 10).view(1, 10)
 criterion = nn.MSELoss()
 print("output:", output)
 print(output.type())
-output = output.type(t.LongTensor)
+
 print("target:", target)
 print(target.type())
+target = target.type(t.FloatTensor)
 loss = criterion(output, target)
 print(loss)# loss是个scalar
 
