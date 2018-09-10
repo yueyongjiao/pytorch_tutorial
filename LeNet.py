@@ -51,7 +51,9 @@ output = net(input)
 target = 1.0 * t.arange(0, 10).view(1, 10)
 criterion = nn.MSELoss()
 print("output:", output)
+print(output.type())
 print("target:", target)
+print(target.type())
 loss = criterion(output, target)
 print(loss)# loss是个scalar
 
