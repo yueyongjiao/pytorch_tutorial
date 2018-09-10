@@ -48,7 +48,7 @@ net.zero_grad()# 所有参数的梯度清零
 out.backward(t.ones(1, 10))# 反向传播
 
 output = net(input)
-target = t.arange(0, 10).view(1, 10)
+target = 1.0 * t.arange(0, 10).view(1, 10)
 criterion = nn.MSELoss()
 print("output:", output)
 print("target:", target)
