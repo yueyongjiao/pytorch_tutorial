@@ -17,7 +17,8 @@ transform = transforms.Compose([
 
 # 训练集
 trainset = tv.datasets.CIFAR10(
-                    root='E:/cifar-10-python/cifar-10-batches-py/data/',
+                    # root='E:/cifar-10-python/cifar-10-batches-py/data/',
+                    root='/home/yueyongjiao/data',
                     train=True,
                     download=True,
                     transform=transform)
@@ -30,7 +31,8 @@ trainloader = t.utils.data.DataLoader(
 
 # 测试集
 testset = tv.datasets.CIFAR10(
-                    root='E:/cifar-10-python/cifar-10-batches-py/data/',
+                    # root='E:/cifar-10-python/cifar-10-batches-py/data/',
+                    root='/home/yueyongjiao/data',
                     train=False,
                     download=True,
                     transform=transform)
