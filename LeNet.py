@@ -36,6 +36,6 @@ for name,parameters in net.named_parameters():
 test = t.randn(1, 1, 4, 4)
 print("test: ", test)
 input = t.randn(1, 1, 32, 32)
-out = Net(input)
+out = net(input)
 print(out.size())
 
