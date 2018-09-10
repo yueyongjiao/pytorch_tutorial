@@ -2,7 +2,7 @@
 import torch as t
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch.optim as optim
 
 class Net(nn.Module):
 	def __init__(self):
@@ -56,6 +56,21 @@ print(output.type())
 print("target:", target)
 print(target.type())
 target = target.type(t.FloatTensor)
+print(target.type())
 loss = criterion(output, target)
 print(loss)# loss是个scalar
 
+
+# 运行.backward，观察调用之前和调用之后的grad
+net.zero_grad()# 把net中所有可学习参数的梯度清零
+print('反向传播之前 conv1.bias的梯度')
+print(net.conv1.bias.grad)
+loss.backward()
+print('反向传播之后 conv1.bias的梯度')
+print(net.conv1.bias.grad)
+optimizer = optim.SGD(net.parameters(), lr=0.01)
+optimizer.zero_grad()
+output = net(input)
+loss = criterion(output, target)
+loss.backward()
+optimizer.step()
