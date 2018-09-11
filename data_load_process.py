@@ -53,12 +53,13 @@ print(classes[label])
 
 
 # (data + 1) / 2是为了还原被归一化的数据
-new_img = show((data + 1) / 2).resize((100, 100))
-new_img.show()
+show((data + 1) / 2).resize((100, 100))
+print(show((data + 1) / 2).resize((100, 100)))
+
 dataiter = iter(trainloader)
 images, labels = dataiter.next() # 返回4张图片及标签
-print(' '.join('%11s'%classes[labels[j]] for j in range(4)))
-show(tv.utils.make_grid((images+1)/2)).resize((400,100))
+print(' '.join('%11s' % classes[labels[j]] for j in range(4)))
+show(tv.utils.make_grid((images+1)/2)).resize((400, 100))
 
 import torch.nn as nn
 import torch.nn.functional as F
