@@ -3,7 +3,7 @@ import torch as t
 import torchvision as tv
 import torchvision.transforms as transforms
 from torchvision.transforms import ToPILImage
-show = ToPILImage() # 可以把Tensor转成Image，方便可视化
+show = ToPILImage()# 可以把Tensor转成Image，方便可视化
 
 # 第一次运行程序torchvision会自动下载CIFAR-10数据集，
 # 大约100M，需花费一定的时间，
@@ -20,7 +20,7 @@ trainset = tv.datasets.CIFAR10(
                     # root='E:/cifar-10-python/cifar-10-batches-py/data/',
                     root='/home/yueyongjiao/data/cifar-10-batches-py/',
                     train=True,
-                    download=True,
+                    download=False,
                     transform=transform)
 
 trainloader = t.utils.data.DataLoader(
@@ -34,7 +34,7 @@ testset = tv.datasets.CIFAR10(
                     # root='E:/cifar-10-python/cifar-10-batches-py/data/',
                     '/home/yueyongjiao/data/cifar-10-batches-py/',
                     train=False,
-                    download=True,
+                    download=False,
                     transform=transform)
 
 testloader = t.utils.data.DataLoader(
