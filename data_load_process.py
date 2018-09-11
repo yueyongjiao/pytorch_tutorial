@@ -18,7 +18,7 @@ transform = transforms.Compose([
 # 训练集
 trainset = tv.datasets.CIFAR10(
                     # root='E:/cifar-10-python/cifar-10-batches-py/data/',
-                    root='/home/yueyongjiao/data',
+                    root='/home/yueyongjiao/data/cifar-10-batches-py/',
                     train=True,
                     download=True,
                     transform=transform)
@@ -32,7 +32,7 @@ trainloader = t.utils.data.DataLoader(
 # 测试集
 testset = tv.datasets.CIFAR10(
                     # root='E:/cifar-10-python/cifar-10-batches-py/data/',
-                    root='/home/yueyongjiao/data',
+                    '/home/yueyongjiao/data',
                     train=False,
                     download=True,
                     transform=transform)
@@ -50,3 +50,33 @@ print(classes[label])
 
 # (data + 1) / 2是为了还原被归一化的数据
 show((data + 1) / 2).resize((100, 100))
+
+dataiter = iter(trainloader)
+images, labels = dataiter.next() # 返回4张图片及标签
+print(' '.join('%11s'%classes[labels[j]] for j in range(4)))
+show(tv.utils.make_grid((images+1)/2)).resize((400,100))
+
+import torch.nn as nn
+import torch.nn.functional as F
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1   = nn.Linear(16*5*5, 120)
+        self.fc2   = nn.Linear(120, 84)
+        self.fc3   = nn.Linear(84, 10)
+
+    def forward(self, x):
+        x = F.max_pool2d(F.relu(self.conv1(x)), (2, 2))
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
+        x = x.view(x.size()[0], -1)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+
+net = Net()
+print(net)
