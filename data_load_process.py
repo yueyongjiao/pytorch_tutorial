@@ -45,12 +45,16 @@ testloader = t.utils.data.DataLoader(
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
+print("trainset: ", trainset)
 (data, label) = trainset[100]
+print("data: ", data)
+print("label : ", label)
 print(classes[label])
 
-# (data + 1) / 2是为了还原被归一化的数据
-show((data + 1) / 2).resize((100, 100))
 
+# (data + 1) / 2是为了还原被归一化的数据
+new_img = show((data + 1) / 2).resize((100, 100))
+new_img.show()
 dataiter = iter(trainloader)
 images, labels = dataiter.next() # 返回4张图片及标签
 print(' '.join('%11s'%classes[labels[j]] for j in range(4)))
