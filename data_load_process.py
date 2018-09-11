@@ -4,7 +4,7 @@ import torchvision as tv
 import torchvision.transforms as transforms
 from torchvision.transforms import ToPILImage
 show = ToPILImage()# 可以把Tensor转成Image，方便可视化
-from matplotlib import pyplot
+
 # 第一次运行程序torchvision会自动下载CIFAR-10数据集，
 # 大约100M，需花费一定的时间，
 # 如果已经下载有CIFAR-10，可通过root参数指定
@@ -55,7 +55,7 @@ print(classes[label])
 # (data + 1) / 2是为了还原被归一化的数据
 show((data + 1) / 2).resize((100, 100))
 print(show((data + 1) / 2).resize((100, 100)))
-pyplot.plot(show((data + 1) / 2).resize((100, 100)))
+
 dataiter = iter(trainloader)
 images, labels = dataiter.next() # 返回4张图片及标签
 print(' '.join('%11s' % classes[labels[j]] for j in range(4)))
