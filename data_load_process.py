@@ -32,7 +32,7 @@ trainloader = t.utils.data.DataLoader(
 # 测试集
 testset = tv.datasets.CIFAR10(
                     # root='E:/cifar-10-python/cifar-10-batches-py/data/',
-                    '/home/yueyongjiao/data',
+                    '/home/yueyongjiao/data/cifar-10-batches-py/',
                     train=False,
                     download=True,
                     transform=transform)
