@@ -74,3 +74,36 @@ output = net(input)
 loss = criterion(output, target)
 loss.backward()
 optimizer.step()
+
+from torch import optim
+criterion = nn.CrossEntropyLoss() # 交叉熵损失函数
+optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
+t.set_num_threads(8)
+for epoch in range(2):
+
+	running_loss = 0.0
+	for i, data in enumerate(trainloader, 0):
+
+		# 输入数据
+		inputs, labels = data
+
+		# 梯度清零
+		optimizer.zero_grad()
+
+		# forward + backward
+		outputs = net(inputs)
+		loss = criterion(outputs, labels)
+		loss.backward()
+
+		# 更新参数
+		optimizer.step()
+
+		# 打印log信息
+		# loss 是一个scalar,需要使用loss.item()来获取数值，不能使用loss[0]
+		running_loss += loss.item()
+		if i % 2000 == 1999:  # 每2000个batch打印一下训练状态
+			print('[%d, %5d] loss: %.3f' \
+				  % (epoch + 1, i + 1, running_loss / 2000))
+			running_loss = 0.0
+print('Finished Training')
