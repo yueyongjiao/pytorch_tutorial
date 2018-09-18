@@ -18,7 +18,7 @@ class Linear(nn.Module): # 继承nn.Module
 
 layer = Linear(4, 3)
 input = V(t.randn(2, 4))
-print("input size : %s" % input.size())
+print(input.size())
 output = layer(input)
 print(output)
 
