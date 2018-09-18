@@ -12,13 +12,13 @@ class Linear(nn.Module): # 继承nn.Module
 
     def forward(self, x):
         x = x.mm(self.w)  # x.@(self.w)
-        print(x.shape())
+        print(x.size())
         return x + self.b.expand_as(x)
 
 
 layer = Linear(4, 3)
 input = V(t.randn(2, 4))
-print("input: ", input.shape())
+print("input size : %s" % input.size())
 output = layer(input)
 print(output)
 
