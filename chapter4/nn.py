@@ -14,6 +14,7 @@ class Linear(nn.Module): # 继承nn.Module
         print(self.w.size())
         x = x.mm(self.w)  # x.@(self.w)
         print(x.size())
+        print(self.b.size())
         return x + self.b.expand_as(x)
 
 
