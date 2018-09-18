@@ -11,6 +11,7 @@ class Linear(nn.Module): # 继承nn.Module
         self.b = nn.Parameter(t.randn(out_features))
 
     def forward(self, x):
+        print(self.w.size())
         x = x.mm(self.w)  # x.@(self.w)
         print(x.size())
         return x + self.b.expand_as(x)
