@@ -16,7 +16,7 @@ class Linear(nn.Module):
 
 
 layer = Linear(4, 3)
-input = V(t.randn(2, 4))
+input = V(t.randn(4, 2))
 output = layer(input)
 print(output)
 
